@@ -92,5 +92,6 @@ public class CustomArrayList<T> implements List<T> {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);}
         elements[index] = element;
-        return (T) element;}
+        return (T) element;
+    }
 }
