@@ -2,46 +2,66 @@ package management;
 
 import library.Book;
 import library.Member;
+import datastructures.maps.CustomHashMap;
 
 public class BookManager {
-    // TODO: Define a data structure that stores ISBNs and their matching Book objects
-
+    private CustomHashMap<String, Book> books;
     private MemberManager memberManager;
 
     public BookManager(MemberManager memberManager) {
-        // TODO: Initialize your data structure here
+        this.books = new CustomHashMap<>();
         this.memberManager = memberManager;
     }
 
     public void addBook(Book book) {
-        // TODO: Add the book and its ISBN to your data structure
+        if (book != null && book.getIsbn() != null) {
+            this.books.put(book.getIsbn(), book);
+        }
     }
 
     public Book getBookByIsbn(String isbn) {
-        // TODO
+        if (isbn != null) {
+            return this.books.get(isbn);
+        }
         return null;
     }
 
     public boolean isBookAvailable(String isbn) {
-        // TODO
+        Book book = getBookByIsbn(isbn);
+        if (book != null) {
+            return book.isAvailable();
+        }
         return false;
     }
 
     public void setBookAvailability(String isbn, boolean available) {
-        // TODO
+        Book book = getBookByIsbn(isbn);
+        if (book != null) {
+            book.setAvailable(available);
+        }
     }
 
     public void addToWaitlist(String isbn, String memberId) {
-        // TODO
+        Book book = getBookByIsbn(isbn);
+        Member member = memberManager.getMember(memberId);
+        if (book != null && member != null) {
+            book.addToWaitlist(member);
+        }
     }
 
     public Member getNextFromWaitlist(String isbn) {
-        // TODO
+        Book book = getBookByIsbn(isbn);
+        if (book != null) {
+            return book.getNextInWaitlist();
+        }
         return null;
     }
 
     public boolean hasWaitlist(String isbn) {
-        // TODO
+        Book book = getBookByIsbn(isbn);
+        if (book != null) {
+            return book.hasWaitlist();
+        }
         return false;
     }
 }
