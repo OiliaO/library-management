@@ -7,14 +7,13 @@ import library.Transaction;
 import java.util.Date;
 
 public class TransactionManager {
-    // TODO: Define a data structure that stores transactions
+    private CustomArrayList<Transaction> transactions;
 
     public TransactionManager() {
-        // TODO: Initialize your data structure here
+        this.transactions = new CustomArrayList<>();
     }
 
     public Transaction addTransaction(String bookTitle, String memberName, String type) {
-
         Transaction transaction = new Transaction(
                 "TXN-" + new Date().getTime(),
                 bookTitle,
@@ -22,12 +21,14 @@ public class TransactionManager {
                 type
         );
 
-        // TODO: Add the transaction to your data structure
+        this.transactions.add(transaction);
         return transaction;
     }
 
     public Transaction getTransactionByIndex(int index) {
-        // TODO:
+        if (index >= 0 && index < this.transactions.size()) {
+            return this.transactions.get(index);
+        }
         return null;
     }
 }
