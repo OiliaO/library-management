@@ -1,7 +1,8 @@
 package datastructures.lists;
 
 import datastructures.interfaces.LinkedList;
-import java.util.NoSuchElementException;
+import java.util.*
+        ;
 
 public class CustomLinkedList<T> implements LinkedList<T> {
     private static class Node<T> {
@@ -20,7 +21,7 @@ public class CustomLinkedList<T> implements LinkedList<T> {
     @Override
     public boolean add(Object t) {
         if (t == null) {
-            throw new NullPointerException("Element cannot be null."); // طبق دستورالعمل برای Collection.add
+            throw new NullPointerException("Element cannot be null.");
         }
         addLast((T)t);
         return true;
